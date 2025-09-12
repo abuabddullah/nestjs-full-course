@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import appConfig from './config/app.config';
 import { HelloModule } from './hello/hello.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { HelloModule } from './hello/hello.module';
       load: [appConfig],
     }),
     HelloModule,
+    PostsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
