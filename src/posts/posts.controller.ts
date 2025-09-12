@@ -10,9 +10,14 @@ import {
   Patch,
   Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import * as postsInterface from './posts.interface';
+import { CreatePostDto } from './postDTOsValidation/create-posts.dto';
+import { UpdatePostDto } from './postDTOsValidation/update-posts.dto';
+import { PostExistsPipe } from './postsPipes/post-exists.pipe';
 
 @Controller('posts')
 export class PostsController {
@@ -20,9 +25,15 @@ export class PostsController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
+  @UsePipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    }),
+  ) 
   createPost(
     @Body()
-    payload: Omit<postsInterface.IPost, 'id' | 'createdAt' | 'updatedAt'>,
+    payload: CreatePostDto,
   ): postsInterface.IPost {
     return this.postsService.createPost(payload);
   }
@@ -39,22 +50,22 @@ export class PostsController {
   }
 
   @Get(':id')
-  getPostById(@Param('id', ParseIntPipe) id: number) {
+  getPostById(@Param('id', ParseIntPipe, PostExistsPipe) id: number) {
     return this.postsService.getPostById(id);
   }
 
   @Patch(':id')
   updatePost(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe, PostExistsPipe) id: number,
     @Body()
-    payload: Partial<Omit<postsInterface.IPost, 'id' | 'createdAt'>> | any,
+    payload: UpdatePostDto,
   ) {
     return this.postsService.updatePost(id, payload);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  deletePost(@Param('id', ParseIntPipe) id: number) {
+  deletePost(@Param('id', ParseIntPipe, PostExistsPipe) id: number) {
     const result = this.postsService.deletePost(id);
     return result;
   }
