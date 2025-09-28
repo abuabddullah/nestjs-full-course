@@ -5,9 +5,9 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-<video width="320" height="240" controls>
-  <source src="[movie.mp4](https://www.youtube.com/watch?v=a98uayCNXWM&list=PL8jwtTRooEPRFkLujIMuzlmzDFEofcoDp&index=2)" type="video/mp4">
-</video>
+# resource
+* https://www.youtube.com/watch?v=a98uayCNXWM&list=PL8jwtTRooEPRFkLujIMuzlmzDFEofcoDp&index=2
+* https://www.youtube.com/watch?v=a98uayCNXWM&list=PL8jwtTRooEPRFkLujIMuzlmzDFEofcoDp&index=2&pp=gAQBiAQB
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
     <p align="center">
