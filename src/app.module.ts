@@ -6,14 +6,21 @@ import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { CourseModule } from './course/course.module';
+import { SharedModule } from './shared/shared.module';
+import appConfig from './config/app.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(process.env.MONGODB_URL as string),
+    ConfigModule.forRoot({
+      isGlobal: true, // makes configmodule globally available
+      load: [appConfig],
+    }),
+    // MongooseModule.forRoot(process.env.MONGO_URI as string), // directly using env
+    MongooseModule.forRoot(appConfig().mongoUri), // using config
     AuthModule,
     UserModule,
     CourseModule,
+    SharedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

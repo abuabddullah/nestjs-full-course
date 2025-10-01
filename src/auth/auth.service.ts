@@ -1,21 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import { RegisterDto } from './dto/registerUser.dto';
-import bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { IJWTPayload } from './auth.interface';
+import { SharedService } from 'src/shared/shared.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
+    private readonly sharedService: SharedService,
   ) {}
 
   async registerUser(registerUserDto: RegisterDto) {
-    console.log('registerDto', registerUserDto);
 
-    const saltRounds = 10;
-    const hash = await bcrypt.hash(registerUserDto.password, saltRounds);
+    const hash = await this.sharedService.hashPassword(
+      registerUserDto.password,
+    );
     // Logic for user register
     /**
      * 1. v check if email already exists
@@ -31,9 +33,25 @@ export class AuthService {
     });
 
     // todo: remove role admin from here. only for test.
-    const payload = { sub: user._id, role: 'admin' };
-    const token = await this.jwtService.signAsync(payload);
-    console.log(token);
-    return { access_token: token };
+    const payload: IJWTPayload = {
+      id: user._id.toString(),
+      role: user.role,
+      email: user.email,
+    };
+    // const token = await this.jwtService.signAsync(payload);
+    const token = await this.sharedService.signAccessToken(payload);
+    return { accessToken: token };
+  }
+
+  async loginUser(loginUserDto: Partial<RegisterDto>) {
+    const user = await this.userService.loginUser(loginUserDto);
+    // todo: remove role admin from here. only for test.
+    const payload: IJWTPayload = {
+      id: user._id.toString(),
+      role: user.role,
+      email: user.email,
+    };
+    const token = await this.sharedService.signAccessToken(payload);
+    return { accessToken: token };
   }
 }
