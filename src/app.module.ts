@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { CourseModule } from './course/course.module';
 import { SharedModule } from './shared/shared.module';
+import { AiChatModule } from './ai-chat/ai-chat.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -21,6 +22,7 @@ import appConfig from './config/app.config';
     UserModule,
     CourseModule,
     SharedModule,
+    AiChatModule,
   ],
   controllers: [AppController],
   providers: [AppService],
