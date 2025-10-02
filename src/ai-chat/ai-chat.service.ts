@@ -34,6 +34,7 @@ export class AiChatService {
     const tavilyWebsearchTool = new TavilySearch({
       maxResults: 3,
       topic: 'general',
+      includeImages: true,
     });
 
     const tools = [tavilyWebsearchTool];
