@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CourseModule } from './course/course.module';
 import { SharedModule } from './shared/shared.module';
 import { AiChatModule } from './ai-chat/ai-chat.module';
+import { AlimAiModule } from './alim-ai/alim-ai.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -23,6 +24,7 @@ import appConfig from './config/app.config';
     CourseModule,
     SharedModule,
     AiChatModule,
+    AlimAiModule,
   ],
   controllers: [AppController],
   providers: [AppService],
