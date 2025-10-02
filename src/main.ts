@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import appConfig from 'src/config/app.config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -12,6 +13,16 @@ async function bootstrap() {
       disableErrorMessages: false,
     }),
   );
-  await app.listen(process.env.PORT ?? 3050);
+  app.enableCors({
+    // origin: [`http://10.10.7.79:3000`], // adjust to your frontend origin(s)
+    origin: '*', // adjust to your frontend origin(s)
+    credentials: true,
+  });
+  // Read host/IP from config (src/config/app.config.ts -> ip_address)
+  const ip_address = appConfig().ip_address;
+  const host = ip_address ?? '0.0.0.0';
+  const port = Number(process.env.PORT ?? 3050);
+
+  await app.listen(port, host);
 }
 bootstrap();

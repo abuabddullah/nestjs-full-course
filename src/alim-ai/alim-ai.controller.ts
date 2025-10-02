@@ -1,5 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AlimAiService } from './alim-ai.service';
+import { sendResponse } from 'src/utils/response.util';
 
 @Controller('alim-ai')
 export class AlimAiController {
@@ -8,6 +9,6 @@ export class AlimAiController {
   @Post()
   async chat(@Body('message') message: string) {
     const response = await this.alimAiService.chat(message);
-    return { response };
+    return sendResponse('Chat response successfull', response);
   }
 }
