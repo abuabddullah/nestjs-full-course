@@ -1,0 +1,59 @@
+GET http://localhost:3000
+
+
+###
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "name": "Sujoy",
+    "email": "sujoy@codersgyan.com",
+    "password": "Pass@123"
+}
+
+
+###
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "sujoy@codersgyan.com",
+    "password": "Pass@123"
+}
+
+
+### Create note
+POST http://localhost:3000/api/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoic3Vqb3lAY29kZXJzZ3lhbi5jb20iLCJpYXQiOjE3NTk4NzExMzgsImV4cCI6MTc1OTg3MTE5OH0.CJThcM3TtFv2x7h-pvPods5znlWF46tyrYEQghiThR4
+
+{
+    "title": "Note 7",
+    "body": "This is note 7"
+}
+
+### Get all notes
+GET http://localhost:3000/api/notes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoic3Vqb3lAY29kZXJzZ3lhbi5jb20iLCJpYXQiOjE3NTk4NzEyNTIsImV4cCI6MTc1OTg3MTg1Mn0.deTRSO8N9L_9f-dtufPbT4vostnD5LjRGSJN9HTwQDc
+
+
+### Get a single note
+GET http://localhost:3000/api/notes/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoic3Vqb3lAY29kZXJzZ3lhbi5jb20iLCJpYXQiOjE3NTk4NzE4NzQsImV4cCI6MTc1OTg3MjQ3NH0.TCxdRzbDNOLiYYKw1JhVrbRfVi_w4rP934aRlGOZyGo
+
+
+### Update note
+PATCH http://localhost:3000/api/notes/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoic3Vqb3lAY29kZXJzZ3lhbi5jb20iLCJpYXQiOjE3NTk4NzIzNjAsImV4cCI6MTc1OTg3Mjk2MH0.NmiBAUnJuyjayND4HMtSSd1FrGg00u1srUBs1P2GvGs
+
+{
+    "body": "This is note 7 updated"
+}
+
+### Delete note
+DELETE http://localhost:3000/api/notes/5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjcsImVtYWlsIjoic3Vqb3lAY29kZXJzZ3lhbi5jb20iLCJpYXQiOjE3NTk4NzMwMzcsImV4cCI6MTc1OTg3MzYzN30.HVyuwDzR-KvbWm9URwSIcCCbOlV0TnRQPYqYnvBtF34
