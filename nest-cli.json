@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/uber-microservice/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/uber-microservice/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/uber-microservice",
+  "projects": {
+    "auth-service": {
+      "type": "application",
+      "root": "apps/auth-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth-service/tsconfig.app.json"
+      }
+    },
+    "passenger-service": {
+      "type": "application",
+      "root": "apps/passenger-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/passenger-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/passenger-service/tsconfig.app.json"
+      }
+    },
+    "rider-service": {
+      "type": "application",
+      "root": "apps/rider-service",
+      "entryFile": "main",
+      "sourceRoot": "apps/rider-service/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rider-service/tsconfig.app.json"
+      }
+    },
+    "uber-microservice": {
+      "type": "application",
+      "root": "apps/uber-microservice",
+      "entryFile": "main",
+      "sourceRoot": "apps/uber-microservice/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/uber-microservice/tsconfig.app.json"
+      }
+    }
+  }
+}

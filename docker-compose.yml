@@ -1,0 +1,23 @@
+version: "3.1"
+# MongoDB, Postgres, Redis
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongodb-uber-microservice
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+#     volumes:
+#       - mongodb_data:/data/db
+#     networks:
+#       - uber-microservice
+
+# volumes:
+#   mongodb_data:
+
+# networks:
+#   uber-microservice:
+#     driver: bridge
