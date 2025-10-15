@@ -9,7 +9,9 @@ describe('RiderCoordinatesController', () => {
       controllers: [RiderCoordinatesController],
     }).compile();
 
-    controller = module.get<RiderCoordinatesController>(RiderCoordinatesController);
+    controller = module.get<RiderCoordinatesController>(
+      RiderCoordinatesController,
+    );
   });
 
   it('should be defined', () => {

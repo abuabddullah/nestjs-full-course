@@ -4,6 +4,7 @@ import { AuthServiceService } from './auth-service.service';
 import appConfig from '../../../config/app.config';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { RiderModule } from '../rider/rider.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       envFilePath: '.env',
     }),
     MongooseModule.forRoot(appConfig().authService.mongoUri),
+    RiderModule,
   ],
   controllers: [AuthServiceController],
   providers: [AuthServiceService],

@@ -3,7 +3,7 @@ export default () => ({
   authService: {
     mongoUri:
       process.env.AUTH_SERVICE_MONGO_URI ||
-      'mongodb://localhost:27017/uber-microservice-auth-service',
+      'mongodb://root:root@localhost:27017/uber-microservice-auth-service?authSource=admin',
     port: parseInt(process.env.AUTH_SERVICE_PORT || '3001', 10),
   },
 
@@ -11,7 +11,7 @@ export default () => ({
   passengerService: {
     mongoUri:
       process.env.PASSENGER_SERVICE_MONGO_URI ||
-      'mongodb://localhost:27017/uber-microservice-passenger-service',
+      'mongodb://root:root@localhost:27017/uber-microservice-passenger-service?authSource=admin',
     port: parseInt(process.env.PASSENGER_SERVICE_PORT || '3002', 10),
   },
 
@@ -19,7 +19,7 @@ export default () => ({
   riderService: {
     mongoUri:
       process.env.RIDER_SERVICE_MONGO_URI ||
-      'mongodb://localhost:27017/uber-microservice-rider-service',
+      'mongodb://root:root@localhost:27017/uber-microservice-rider-service?authSource=admin',
     port: parseInt(process.env.RIDER_SERVICE_PORT || '3003', 10),
   },
 
